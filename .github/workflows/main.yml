@@ -20,10 +20,12 @@ jobs:
       run: cd cypress-realworld-app
 
     - name: Install dependencies
-      run: yarn install
+      run: |
+        yarn install
+        npm install
 
     - name: Start application
-      run:  yarn run cross-env NODE_ENV=development yarn:start:react yarn:start:api:watch
+      run: yarn dev
 
     - name: Wait for Application to Start
       run: npx wait-on http://localhost:3000
