@@ -13,12 +13,12 @@
     "rimraf": "^5.0.5"
   },
   "scripts": {
-    "wdio": "cross-env ENV=http://localhost:3000/ BROWSER=chrome wdio run ./wdio.conf.js",
+    "wdio": "cross-env BROWSER=chrome wdio run ./wdio.conf.js",
     "clean": "rimraf allure-report/ && rimraf allure-results && rimraf test-results",
-    "report-json": "npm run clean && cross-env ENV=http://localhost:3000/ BROWSER=chrome wdio run ./wdio.conf.js --reporter=@wdio/allure-reporter",
+    "report-json": "npm run clean && cross-env BROWSER=chrome wdio run ./wdio.conf.js --reporter=@wdio/allure-reporter",
     "report-html": "npx allure generate ./allure-results --clean && npx allure open",
-    "test:firefox": "cross-env ENV=http://localhost:3000/ wdio run ./wdio.firefox.conf.js",
-    "test:edge": "cross-env ENV=http://localhost:3000/ wdio run ./wdio.edge.conf.js",
-    "test:login": "cross-env ENV=http://localhost:3000/ npx wdio --spec ./test/specs/login.spec.js"
+    "test:firefox": "wdio run ./wdio.firefox.conf.js",
+    "test:edge": "wdio run ./wdio.edge.conf.js",
+    "test:login": "cross-env BROWSER=chrome npx wdio --spec ./test/specs/login.spec.js"
   }
 }
