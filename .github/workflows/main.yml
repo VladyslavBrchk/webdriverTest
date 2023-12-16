@@ -26,9 +26,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./allure-report
-
-    - uses: actions/upload-artifact@v1
-      if: failure()
-      with:
-        name: logs
-        path: logs
