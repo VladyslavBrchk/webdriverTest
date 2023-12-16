@@ -1,0 +1,40 @@
+name: WDIO Tests
+on: [push]
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        yarn install
+        npm install
+
+    - name: Build application
+      run: yarn build
+
+    - name: Start application
+      run: | 
+        cd .\cypress-realworld-app
+        run yarn install
+        run yarn dev
+
+    - name: Wait for Application to Start
+      run: npx wait-on http://localhost:3000
+
+    - name: Run WDIO Tests
+      run: |
+        npx run report-json
+        npx run report-html
+
+    - name: Deploy Cypress Reports
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+
+    - name: Stop the Application
+      run: pkill -f "yarn dev"
