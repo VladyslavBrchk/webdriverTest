@@ -1,23 +1,24 @@
 name: WDIO Tests
 on: [push]
 jobs:
-  wdio-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
+      
+    - name: Clone Repository
+      run: git clone https://github.com/cypress-io/cypress-realworld-app
 
-    - name: Install Dependencies
-      run: |
-        yarn install
-        npm install
+    - name: Change Directory
+      run: cd /cypress-realworld-app
+
+    - name: Install dependencies
+      run: yarn install
 
     - name: Start application
-      run: | 
-        cd .\cypress-realworld-app
-        run yarn install
-        run yarn dev
+      run: yarn dev
 
     - name: Wait for Application to Start
       run: npx wait-on http://localhost:3000
@@ -27,7 +28,7 @@ jobs:
         npx run report-json
         npx run report-html
 
-    - name: Deploy Cypress Reports
+    - name: Deploy Reports
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
