@@ -15,11 +15,14 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    - name: Test n Json Report
-      run: npm run report-json
+    - name: Test
+      run: npm run wdio
 
-    - name: Create html Report
-      run: npm run report-html
+  #  - name: Test n Json Report
+  #    run: npm run report-json
+
+  #  - name: Create html Report
+  #    run: npm run report-html
 
     - name: Deploy Reports
       uses: peaceiris/actions-gh-pages@v3
