@@ -1,7 +1,7 @@
 name: WDIO Tests
 on: [push]
 jobs:
-  cypress-tests:
+  wdio-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,9 +12,6 @@ jobs:
       run: |
         yarn install
         npm install
-
-    - name: Build application
-      run: yarn build
 
     - name: Start application
       run: | 
