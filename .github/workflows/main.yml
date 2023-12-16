@@ -5,20 +5,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-      
     - name: Clone Repository
       run: git clone https://github.com/cypress-io/cypress-realworld-app
 
-    - name: Change Directory
-      run: cd cypress-realworld-app
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Install Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: "21.x"
 
     - name: Install dependencies
       run: yarn install
 
+    - name: Change Directory
+      run: cd cypress-realworld-app
+
     - name: Start application
-      run: yarn run cross-env NODE_ENV=development concurrently yarn:start:react yarn:start:api:watch
+      run: yarn dev
 
     - name: Wait for Application to Start
       run: npx wait-on http://localhost:3000
