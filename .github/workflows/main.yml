@@ -12,7 +12,7 @@ jobs:
       run: git clone https://github.com/cypress-io/cypress-realworld-app
 
     - name: Change Directory
-      run: cd /cypress-realworld-app
+      run: cd cypress-realworld-app
 
     - name: Install dependencies
       run: yarn install
