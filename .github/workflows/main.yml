@@ -6,29 +6,10 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     
-    - name: Clone Repository
-      run: git clone https://github.com/cypress-io/cypress-realworld-app
-
-    - name: Install Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: "21.x"
-
-    - name: Change Directory
-      run: cd cypress-realworld-app
-
-    - name: Install dependencies
-      run: yarn install
-
-    - name: Start application
-      run: |
-        yarn run yarn:start:react 
-        yarn run yarn:start:api:watch
-
-    - name: Wait for Application to Start
-      run: npx wait-on http://localhost:3000
+    - name: Install Dependencies
+      run: npm install
 
     - name: Run WDIO Tests
       run: |
@@ -40,6 +21,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./allure-report
-
-    - name: Stop the Application
-      run: pkill -f "yarn dev"
