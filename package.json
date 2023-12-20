@@ -13,7 +13,7 @@
     "rimraf": "^5.0.5"
   },
   "scripts": {
-    "wdio": "cross-env BROWSER=chrome wdio run ./wdio.conf.js",
+    "wdio": "cross-env BROWSER=${{ secrets.BROWSER }} wdio run ./wdio.conf.js",
     "clean": "rimraf allure-report/ && rimraf allure-results && rimraf test-results",
     "report-json": "npm run clean && cross-env BROWSER=chrome wdio run ./wdio.conf.js --reporter=@wdio/allure-reporter",
     "report-html": "npx allure generate ./allure-results --clean && npx allure open",
