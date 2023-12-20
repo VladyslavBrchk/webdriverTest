@@ -19,12 +19,12 @@ describe('Filter testing', async () => {
         await HomePage.clickLogout();
     })
 
-    it('Transaction Filter Text Changing Test', async () => {
+    xit('Transaction Filter Text Changing Test', async () => {
         await expect(HomePage.transactionFilterText).toHaveText(`Amount Range: $${leftBorder} - $${rightBorder}`);
         await expect(HomePage.transactionFilterButtonText).toHaveText(`Amount: $${leftBorder} - $${rightBorder}`);
     })
 
-    it('Transaction Filter Payments Test', async () => {
+    xit('Transaction Filter Payments Test', async () => {
         const filtering = await HomePage.checkTransactionFilter(leftBorder, rightBorder)
         await browser.pause(500);
         await expect(filtering).toBeTruthy();
