@@ -1,7 +1,6 @@
 import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page.js'
 import HomePage from '../pageobjects/home.page.js'
-import { faker } from '@faker-js/faker'
 import fixtures from '../../fixtures.json' assert {type:'json'}
 
 const leftBorder = 100;
@@ -41,13 +40,13 @@ describe('Filter testing', async () => {
     })
 })
 
-describe('Burger Menu testing', () => {
+describe('Burger Menu Test', () => {
     beforeEach(async () => {
         await LoginPage.open();
         await LoginPage.login(fixtures.username, fixtures.password);
     })
 
-    it('Burger Menu testing', async () => {
+    it('Burger Menu Test', async () => {
         await HomePage.clickBurgerMenu();
         await expect(HomePage.sidenav).not.toBeDisplayed();
         await HomePage.clickBurgerMenu();

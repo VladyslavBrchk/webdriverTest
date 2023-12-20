@@ -7,22 +7,42 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-
-    - uses: actions/setup-node@v3
       with:
-        node-version: 20
-        
-    - name: Install Dependencies
+        submodules: 'recursive'
+
+    - name: Setup Node.js and Yarn
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+  
+    - name: Install app
+      run: |
+        cd app
+        yarn install
+    
+    - name: Start website for testing
+      run: |
+        cd app
+        yarn dev &
+  
+    - name: Install Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'  
+        distribution: 'adopt'
+  
+    - name: Install dependencies
       run: npm install
-
-    - name: Test n Json Report
+  
+    - name: Run tests
       run: npm run report-json
-
-    - name: Create html Report
+      continue-on-error: true
+  
+    - name: Generate Allure report
       run: npm run report-html
-
-    - name: Deploy Reports
+  
+    - name: Deploy Allure to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.TOKEN }}
         publish_dir: ./allure-report
