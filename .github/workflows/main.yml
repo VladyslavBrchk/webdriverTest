@@ -34,9 +34,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Set browser
-      run: echo "BROWSER=${{ secrets.BROWSER }}"
-  
     - name: Run tests
       run: npm run report-json
       continue-on-error: true
