@@ -16,7 +16,7 @@
     "wdio": "cross-env BROWSER=chrome wdio run ./wdio.conf.js",
     "clean": "rimraf allure-report/ && rimraf allure-results && rimraf test-results",
     "report-json": "npm run clean && wdio run ./wdio.conf.static.js --reporter=@wdio/allure-reporter",
-    "report-html": "npx allure generate ./allure-results --clean && npx allure open",
+    "report-html": "npx allure generate ./allure-results --clean",
     "test:firefox": "wdio run ./wdio.firefox.conf.js",
     "test:edge": "wdio run ./wdio.edge.conf.js",
     "test:login": "cross-env BROWSER=chrome npx wdio --spec ./test/specs/login.spec.js"
