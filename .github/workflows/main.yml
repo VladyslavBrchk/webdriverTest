@@ -17,12 +17,12 @@ jobs:
   
     - name: Install app
       run: |
-        cd app
+        cd cypress-realworld-app
         yarn install
     
     - name: Start website for testing
       run: |
-        cd app
+        cd cypress-realworld-app
         yarn dev &
   
     - name: Install Java
